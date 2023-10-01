@@ -72,7 +72,7 @@ log_hist
 
 ### Violin Plots
 
-Now we are focusing on Violon Plots:
+Now we are focusing on Violon Plots. The expected violin plots are as expected from the previous visualizations.
 
 
 ```{r}
