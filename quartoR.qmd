@@ -1,0 +1,100 @@
+---
+title: "Exercise1"
+format: html
+author: Christoph J. Bucher
+---
+
+
+
+### Playing with Quarto
+
+This is normal Text.
+
+```{r}
+  print('Hello VSCode')
+
+```
+
+
+### Sampling
+In the following code we first set a seed to make our results reproducible and then we just drew the 100 samples from a log-norm distribution using the function rlnorm.
+```{r}
+
+set.seed(69)
+
+mu <- 5
+sigma <- 0.5
+
+samples <- rlnorm(100, meanlog = mu, sdlog = sigma)
+df <- data.frame(samples)
+#print(colnames(df))
+
+```
+
+### Histogram plotting
+Now we actually want to plot our results. For this reason, we import the ggplot library, which looks great. We can see that the log norm behaves "normally" with the tailing to the right on the linear scale and the nice normal curve after applying the log scale - with the mean at the expected place.
+
+```{r}
+
+library("ggplot2")
+
+
+
+
+
+# Basic histogram
+linear_hist <- ggplot(df, aes(x = samples)) +
+  geom_histogram(binwidth = 10) +
+  geom_vline(aes(xintercept=mean(samples)),
+            color="blue", linetype="dashed", linewidth=1) +
+  labs(title = "Linear Scale", x = "Value", y = "Frequency")
+
+linear_hist
+
+
+# Create a log scale histogram
+log_hist <- ggplot(df, aes(x = log(samples))) +
+  geom_histogram() +
+    geom_vline(aes(xintercept=mean(log(samples))),
+            color="blue", linetype="dashed", linewidth=1) +
+  labs(title = "Log Scale", x = "log(Value)", y = "Frequency")
+
+log_hist
+
+
+
+
+
+
+
+
+```
+
+### Violin Plots
+
+Now we are focusing on Violon Plots:
+
+
+```{r}
+
+violin <- ggplot(df, aes(x = "", y = samples)) + 
+  geom_violin() + 
+  labs(title = "Violon plot", y = "Value")
+
+violin
+
+
+log_violin <- ggplot(df, aes(x = "", y = log(samples))) + 
+  geom_violin() + 
+  labs(title = "log Violon plot", y = "log(Value)")
+
+log_violin
+
+
+```
+
+
+### Inline Mean and Standard Deviation
+
+The mean is `r round(mean(samples), digits = 3)`, with a log of `r round(log(mean(samples)), digits = 3)`.
+The standard deviation is `r round(sd(samples), digits = 3)`, with a log of `r round(log(sd(samples)), digits = 3)`.
