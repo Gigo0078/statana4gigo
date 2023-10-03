@@ -32,7 +32,7 @@ df <- data.frame(samples)
 ```
 
 ### Histogram plotting
-Now we actually want to plot our results. For this reason, we import the ggplot library, which looks great. We can see that the log norm behaves "normally" with the tailing to the right on the linear scale and the nice normal curve after applying the log scale - with the mean at the expected place.
+Now we actually want to plot our results. For this reason, we import the ggplot library, which is relativly easy to handle and gives great visuals. We can see that the log norm behaves "normally" with the tailing to the right on the linear scale and the nice normal curve after applying the log scale - with the mean at the expected place.
 
 ```{r}
 
