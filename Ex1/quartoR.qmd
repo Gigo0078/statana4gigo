@@ -85,7 +85,7 @@ violin <- ggplot(df, aes(x = "", y = samples)) +
 violin
 
 
-log_violin <- ggplot(df, aes(x = "", y = log(samples))) + 
+log_violin <- ggplot(df, aes(x = "", y = samples)) + 
   geom_violin() + 
   labs(title = "log Violon plot", y = "Value")+
   scale_y_log10()
