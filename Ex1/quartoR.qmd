@@ -53,11 +53,12 @@ linear_hist
 
 
 # Create a log scale histogram
-log_hist <- ggplot(df, aes(x = log(samples))) +
+log_hist <- ggplot(df, aes(x = samples)) +
   geom_histogram() +
-    geom_vline(aes(xintercept=mean(log(samples))),
+    geom_vline(aes(xintercept=mean(samples)),
             color="blue", linetype="dashed", linewidth=1) +
-  labs(title = "Log Scale", x = "log(Value)", y = "Frequency")
+  labs(title = "Log Scale", x = "Values", y = "Frequency")+
+  scale_x_log10()
 
 log_hist
 
@@ -86,7 +87,9 @@ violin
 
 log_violin <- ggplot(df, aes(x = "", y = log(samples))) + 
   geom_violin() + 
-  labs(title = "log Violon plot", y = "log(Value)")
+  labs(title = "log Violon plot", y = "Value")+
+  scale_y_log10()
+  
 
 log_violin
 
